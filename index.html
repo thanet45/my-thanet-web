@@ -9,13 +9,13 @@
         :root {
             --neon-color: #00f3ff;
             --bg-color: #05050a;
-            var(--card-bg): rgba(10, 15, 25, 0.85); 
+            --card-bg: rgba(10, 15, 25, 0.85); 
         }
         body {
             font-family: 'Kanit', sans-serif;
             background-color: var(--bg-color);
-            /* เปลี่ยนภาพพื้นหลังเป็นวงล้อโหราศาสตร์และจักรราศี */
-            background-image: url('https://cdn.pixabay.com/photo/2019/08/25/11/27/zodiac-4429314_1280.jpg');
+            /* ใช้รูปภาพจักรวาล ดวงดาว ที่รองรับการแสดงผล 100% */
+            background-image: url('https://images.unsplash.com/photo-1532968961962-8a0cb3a2d4f5?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -28,7 +28,6 @@
             padding: 20px;
             box-sizing: border-box;
         }
-        /* Overlay สีดำจางๆ ให้ตัวหนังสือบนกล่องอ่านง่ายขึ้นเมื่อพื้นหลังมีรายละเอียดเยอะ */
         body::before {
             content: "";
             position: absolute;
