@@ -8,13 +8,18 @@
     <style>
         :root {
             --neon-color: #00f3ff;
-            --bg-color: #0d0d12;
-            --card-bg: rgba(20, 20, 30, 0.7);
+            --bg-color: #05050a;
+            /* ปรับให้กล่องทึบขึ้นเล็กน้อยเพื่อให้ตัวหนังสืออ่านง่ายเมื่อมีพื้นหลังเป็นรูป */
+            --card-bg: rgba(15, 15, 25, 0.85); 
         }
         body {
             font-family: 'Kanit', sans-serif;
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, #1a1a3a 0%, var(--bg-color) 70%);
+            /* ใส่รูปภาพพื้นหลังแนวดูดวง จักรวาล ดวงดาว */
+            background-image: url('https://images.unsplash.com/photo-1515266591878-f93e32bc5937?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #fff;
             display: flex;
             justify-content: center;
@@ -24,20 +29,30 @@
             padding: 20px;
             box-sizing: border-box;
         }
+        /* เพิ่ม Overlay สีดำจางๆ ทับรูปภาพพื้นหลังไม่ให้สว่างเกินไป */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
         .container {
             background: var(--card-bg);
             padding: 40px 30px;
             border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 243, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 243, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 243, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
             max-width: 450px;
             width: 100%;
             text-align: center;
+            position: relative;
         }
         h1 {
             color: var(--neon-color);
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
             margin-bottom: 5px;
             font-weight: 600;
         }
@@ -48,23 +63,24 @@
             margin-top: 15px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             color: white;
             font-size: 16px;
             outline: none;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
         input::placeholder {
             color: rgba(255,255,255,0.5);
         }
-        /* ปรับไอคอนปฏิทินให้เป็นสีขาว */
         input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
             cursor: pointer;
         }
         input:focus, select:focus {
             border-color: var(--neon-color);
-            box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+            background: rgba(0,0,0,0.8);
         }
         button.primary-btn {
             background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
@@ -74,21 +90,22 @@
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 20px;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(67, 100, 247, 0.4);
         }
         button.primary-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(111, 177, 252, 0.4);
+            box-shadow: 0 6px 20px rgba(111, 177, 252, 0.6);
         }
         #result-card {
             display: none;
             margin-top: 25px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
             border-radius: 16px;
             border-left: 4px solid var(--neon-color);
             text-align: left;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.6s ease;
         }
         .share-btn {
             background: transparent;
@@ -101,6 +118,7 @@
         .share-btn:hover {
             background: var(--neon-color);
             color: #000;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
         }
         
         .loader {
@@ -108,34 +126,34 @@
             border: 3px solid rgba(255,255,255,0.1);
             border-top: 3px solid var(--neon-color);
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin: 25px auto;
         }
 
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>✨ ศาสตร์แห่งดวงดาว</h1>
-        <p style="color: #aaa; font-size: 14px;">กรอกข้อมูลเพื่อรับคำทำนายเฉพาะคุณ</p>
+        <p style="color: #bbb; font-size: 15px;">กรอกข้อมูลเพื่อเปิดประตูสู่โชคชะตาของคุณ</p>
         
         <input type="text" id="user-name" placeholder="ชื่อ - นามสกุล" autocomplete="off">
         <input type="date" id="user-dob" title="วันเดือนปีเกิด">
         
         <select id="category-select">
             <option value="" disabled selected>-- เลือกเรื่องที่ต้องการดูดวง --</option>
-            <option value="การงาน">💼 ด้านการงาน</option>
-            <option value="การเงิน">💰 ด้านการเงิน</option>
-            <option value="ความรัก">❤️ ด้านความรัก / เนื้อคู่</option>
-            <option value="ทั่วไป">✨ ภาพรวมทั่วไป</option>
+            <option value="การงาน">💼 ดูดวงการงาน</option>
+            <option value="การเงิน">💰 ดูดวงการเงิน</option>
+            <option value="ความรัก">❤️ ดูดวงความรัก / เนื้อคู่</option>
+            <option value="ทั่วไป">✨ ดูดวงภาพรวมทั่วไป</option>
         </select>
         
-        <button class="primary-btn" onclick="predict()">เริ่มต้นอ่านคำทำนาย</button>
+        <button class="primary-btn" onclick="predict()">ทำนายดวงชะตา</button>
         
         <div class="loader" id="loader"></div>
         
@@ -147,7 +165,6 @@
     </div>
 
     <script>
-        // ชุดคำทำนายแบ่งตามหมวดหมู่ สามารถเข้าไปแก้หรือเพิ่มข้อความในเครื่องหมายคำพูดได้เลย
         const fortunes = {
             "การงาน": [
                 "โปรเจกต์หรือชิ้นงานที่คุณกำลังทำอยู่จะประสบความสำเร็จอย่างงดงาม เจ้านายหรือผู้ใหญ่เล็งเห็นความสามารถ",
@@ -180,7 +197,6 @@
             const dob = document.getElementById('user-dob').value;
             const category = document.getElementById('category-select').value;
             
-            // เช็คว่ากรอกข้อมูลครบหรือไม่
             if(!name || !dob || !category) {
                 alert("กรุณากรอกข้อมูล ชื่อ, วันเกิด และเลือกเรื่องที่ต้องการดูดวงให้ครบถ้วนครับ");
                 return;
@@ -195,28 +211,25 @@
             setTimeout(() => {
                 loader.style.display = 'none';
                 
-                // สุ่มคำทำนายจากหมวดหมู่ที่เลือก
                 const categoryFortunes = fortunes[category];
                 const randomIndex = Math.floor(Math.random() * categoryFortunes.length);
                 const fortuneText = categoryFortunes[randomIndex];
                 
-                // แสดงผลลัพธ์
                 document.getElementById('result-title').innerText = `ดวง${category} ของคุณ ${name}`;
                 document.getElementById('result-text').innerHTML = `
-                    <p style="color: #ccc; font-size: 14px; margin-top: -10px; margin-bottom: 15px;">
-                        วันที่เกิด: ${formatDate(dob)}
+                    <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-top: -10px; margin-bottom: 15px;">
+                        📅 วันที่เกิด: ${formatDate(dob)}
                     </p>
                     ${fortuneText}
                 `;
                 
                 resultCard.style.display = 'block';
-            }, 1500); 
+            }, 1800); 
         }
 
-        // ฟังก์ชันแปลงรูปแบบวันที่ให้สวยงาม (YYYY-MM-DD -> DD/MM/YYYY)
         function formatDate(dateString) {
             const parts = dateString.split('-');
-            const year = parseInt(parts[0]) + 543; // แปลงเป็น พ.ศ.
+            const year = parseInt(parts[0]) + 543;
             return `${parts[2]}/${parts[1]}/${year}`;
         }
 
@@ -228,7 +241,7 @@
                 try {
                     await navigator.share({
                         title: 'คำทำนายของฉัน',
-                        text: `${title}\n\n${textContent}\n\nมาเช็คดวงของคุณบ้างสิ!`,
+                        text: `${title}\n\n${textContent}\n\nมาเช็คดวงของคุณบ้างสิ! ✨`,
                         url: window.location.href
                     });
                 } catch (err) {
