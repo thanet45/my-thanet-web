@@ -9,14 +9,13 @@
         :root {
             --neon-color: #00f3ff;
             --bg-color: #05050a;
-            /* ปรับให้กล่องทึบขึ้นเล็กน้อยเพื่อให้ตัวหนังสืออ่านง่ายเมื่อมีพื้นหลังเป็นรูป */
-            --card-bg: rgba(15, 15, 25, 0.85); 
+            var(--card-bg): rgba(10, 15, 25, 0.85); 
         }
         body {
             font-family: 'Kanit', sans-serif;
             background-color: var(--bg-color);
-            /* ใส่รูปภาพพื้นหลังแนวดูดวง จักรวาล ดวงดาว */
-            background-image: url('https://images.unsplash.com/photo-1515266591878-f93e32bc5937?q=80&w=2000&auto=format&fit=crop');
+            /* เปลี่ยนภาพพื้นหลังเป็นวงล้อโหราศาสตร์และจักรราศี */
+            background-image: url('https://cdn.pixabay.com/photo/2019/08/25/11/27/zodiac-4429314_1280.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -29,12 +28,12 @@
             padding: 20px;
             box-sizing: border-box;
         }
-        /* เพิ่ม Overlay สีดำจางๆ ทับรูปภาพพื้นหลังไม่ให้สว่างเกินไป */
+        /* Overlay สีดำจางๆ ให้ตัวหนังสือบนกล่องอ่านง่ายขึ้นเมื่อพื้นหลังมีรายละเอียดเยอะ */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.55);
             z-index: -1;
         }
         .container {
