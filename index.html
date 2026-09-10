@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ดูดวงประจำวันแม่นๆ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+        .crystal-ball {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        button {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Kanit', sans-serif;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #d63d56;
+            transform: scale(1.05);
+        }
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+            min-height: 60px;
+            line-height: 1.5;
+            color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔮 ดูดวงประจำวัน</h1>
+        <p>ตั้งสมาธิ แล้วกดปุ่มเพื่อรับคำทำนาย</p>
+        <div class="crystal-ball">🔮</div>
+        
+        <button onclick="predict()">รับคำทำนาย</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const fortunes = [
+            "วันนี้คุณมีเกณฑ์ได้รับข่าวดีเรื่องเงินทอง เตรียมตัวรับทรัพย์ได้เลย!",
+            "ระวังการใช้คำพูดในวันนี้ อาจทำให้ผิดใจกับคนใกล้ชิดได้",
+            "ความรักกำลังผลิบาน คนโสดมีเกณฑ์พบคนที่ถูกใจจากงานสังคม",
+            "การงานโดดเด่น เจ้านายเล็งเห็นผลงาน แต่ต้องแลกมาด้วยความเหนื่อยล้า",
+            "วันนี้เป็นวันแห่งโชคลาภ ลองเสี่ยงดวงเล็กๆ น้อยๆ อาจมีลุ้น",
+            "ควรหาเวลาพักผ่อนบ้าง ร่างกายคุณกำลังต้องการการเยียวยา",
+            "จะมีคนแปลกหน้านำความโชคดีหรือโอกาสใหม่ๆ มาให้",
+            "ระวังของมีค่าสูญหาย วันนี้ควรมีสติและรอบคอบให้มาก"
+        ];
+
+        function predict() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "กำลังสื่อสารกับจักรวาล... ✨";
+            
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * fortunes.length);
+                resultDiv.innerHTML = "<strong>คำทำนายของคุณ:</strong><br>" + fortunes[randomIndex];
+            }, 1000); // ดีเลย์ 1 วินาทีให้ดูมีลูกเล่น
+        }
+    </script>
+
+</body>
+</html>
