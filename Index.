@@ -1,7 +1,3 @@
-
-
-======================== index.html ========================
-
 <!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NOIR HOST | Live</title><link rel="stylesheet" href="style.css"></head><body>
 <nav><div class="brand">NOIR <span>HOST</span></div><div class="navright"><span id="identity">กำลังเชื่อมต่อ...</span><button id="loginBtn">เข้าสู่ระบบ</button><button id="logoutBtn" hidden>ออกจากระบบ</button></div></nav>
 <main><header><div class="eyebrow">EXCLUSIVE SOCIAL LOUNGE</div><h1>เลือกโปรไฟล์ที่ชอบ <em>เริ่มพูดคุยทันที</em></h1><p>ดูภาพโปรไฟล์คุณภาพสูง เลือกหมายเลข แล้วส่งข้อความถึงทีมดูแลได้แบบเรียลไทม์</p></header><section class="toolbar"><input id="search" placeholder="ค้นหาหมายเลขหรือชื่อ"><button id="adminBtn" hidden>จัดการระบบ / กล่องข้อความ</button></section><section id="cards" class="cards"><p>กำลังโหลดโปรไฟล์...</p></section></main>
