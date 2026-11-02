@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function admin() { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    match /admins/{uid} {
+      allow get: if signedIn() && request.auth.uid == uid;
+      allow list, create, update, delete: if false;
+    }
+    match /profiles/{pid} {
+      allow read: if true;
+      allow create, update: if admin()
+        && request.resource.data.keys().hasOnly(['number','name','bio','status','photos','updatedAt'])
+        && request.resource.data.number is string && request.resource.data.number.size() <= 12
+        && request.resource.data.name is string && request.resource.data.name.size() <= 60
+        && request.resource.data.bio is string && request.resource.data.bio.size() <= 400
+        && request.resource.data.status in ['online','offline']
+        && request.resource.data.photos is list && request.resource.data.photos.size() <= 60;
+      allow delete: if admin();
+    }
+    match /rooms/{roomId} {
+      function participant() { return signedIn() && resource.data.clientId == request.auth.uid; }
+      function validNewRoom() {
+        return signedIn()
+          && roomId == request.auth.uid + '_' + request.resource.data.profileId
+          && exists(/databases/$(database)/documents/profiles/$(request.resource.data.profileId))
+          && request.resource.data.keys().hasOnly(['clientId','profileId','profileName','profileNumber','createdAt','updatedAt'])
+          && request.resource.data.clientId == request.auth.uid
+          && request.resource.data.profileId is string
+          && request.resource.data.profileName is string
+          && request.resource.data.profileNumber is string
+          && request.resource.data.createdAt == request.time
+          && request.resource.data.updatedAt == request.time;
+      }
+      allow create: if validNewRoom();
+      allow get, list: if admin() || participant();
+      allow update: if (admin() || participant())
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['updatedAt'])
+          && request.resource.data.updatedAt == request.time;
+      allow delete: if admin();
+      match /messages/{messageId} {
+        function canRead() { return admin() || (signedIn() && get(/databases/$(database)/documents/rooms/$(roomId)).data.clientId == request.auth.uid); }
+        allow read: if canRead();
+        allow create: if signedIn() && canRead()
+          && request.resource.data.keys().hasOnly(['text','senderId','senderRole','createdAt'])
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 2000
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.senderRole == (admin() ? 'admin' : 'client')
+          && request.resource.data.createdAt == request.time;
+        allow update, delete: if false;
+      }
+    }
+  }
+}
