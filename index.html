@@ -1,260 +1,150 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ดูดวงแม่นยำระดับโปร | โชคชะตาของคุณ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --neon-color: #00f3ff;
-            --bg-color: #05050a;
-            --card-bg: rgba(10, 15, 25, 0.85); 
-        }
-        body {
-            font-family: 'Kanit', sans-serif;
-            background-color: var(--bg-color);
-            background-image: url('https://images.unsplash.com/photo-1532968961962-8a0cb3a2d4f5?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.55);
-            z-index: -1;
-        }
-        .container {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 243, 255, 0.2);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-        }
-        h1 {
-            color: var(--neon-color);
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        input, select, button {
-            font-family: 'Kanit', sans-serif;
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.6);
-            color: white;
-            font-size: 16px;
-            outline: none;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-        input::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
-        }
-        input:focus, select:focus {
-            border-color: var(--neon-color);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
-            background: rgba(0,0,0,0.8);
-        }
-        button.primary-btn {
-            background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 25px;
-            box-shadow: 0 4px 15px rgba(67, 100, 247, 0.4);
-        }
-        button.primary-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(111, 177, 252, 0.6);
-        }
-        #result-card {
-            display: none;
-            margin-top: 25px;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
-            border-radius: 16px;
-            border-left: 4px solid var(--neon-color);
-            text-align: left;
-            animation: fadeIn 0.6s ease;
-        }
-        .share-btn {
-            background: transparent;
-            border: 1px solid var(--neon-color);
-            color: var(--neon-color);
-            margin-top: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .share-btn:hover {
-            background: var(--neon-color);
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
-        }
-        
-        .loader {
-            display: none;
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top: 3px solid var(--neon-color);
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            animation: spin 1s linear infinite;
-            margin: 25px auto;
-        }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-</head>
-<body>
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NOIR HOST | Live</title><link rel="stylesheet" href="style.css"></head><body>
+<nav><div class="brand">NOIR <span>HOST</span></div><div class="navright"><span id="identity">กำลังเชื่อมต่อ...</span><button id="loginBtn">เข้าสู่ระบบ</button><button id="logoutBtn" hidden>ออกจากระบบ</button></div></nav>
+<main><header><div class="eyebrow">EXCLUSIVE SOCIAL LOUNGE</div><h1>เลือกโปรไฟล์ที่ชอบ <em>เริ่มพูดคุยทันที</em></h1><p>ดูภาพโปรไฟล์คุณภาพสูง เลือกหมายเลข แล้วส่งข้อความถึงทีมดูแลได้แบบเรียลไทม์</p></header><section class="toolbar"><input id="search" placeholder="ค้นหาหมายเลขหรือชื่อ"><button id="adminBtn" hidden>จัดการระบบ / กล่องข้อความ</button></section><section id="cards" class="cards"><p>กำลังโหลดโปรไฟล์...</p></section></main>
+<dialog id="authDialog"><form method="dialog" class="panel"><button class="close" value="cancel">✕</button><h2>เข้าสู่ระบบ NOIR HOST</h2><p>สำหรับสมาชิกและผู้ดูแลระบบ</p><label>อีเมล<input id="email" type="email" autocomplete="email"></label><label>รหัสผ่าน<input id="password" type="password" autocomplete="current-password" minlength="8"></label><div class="actions"><button type="button" id="signinBtn" class="gold">เข้าสู่ระบบ</button><button type="button" id="signupBtn">สมัครสมาชิก</button></div><p id="authError" class="error"></p></form></dialog>
+<dialog id="profileDialog"><div class="panel wide"><button class="close" id="closeProfile">✕</button><div id="profileDetails"></div></div></dialog>
+<dialog id="chatDialog"><div class="panel chatpanel"><button class="close" id="closeChat">✕</button><h2 id="chatTitle">สนทนา</h2><p class="small">ข้อความส่งถึงผู้ดูแลระบบจริง ไม่ใช่บอต</p><div id="messages" class="messages" aria-live="polite"></div><form id="messageForm" class="sendbar"><input id="messageInput" maxlength="2000" placeholder="พิมพ์ข้อความ..." required><button class="gold" type="submit">ส่ง</button></form></div></dialog>
+<dialog id="adminDialog"><div class="panel adminpanel"><button id="closeAdmin" class="close">✕</button><h2>แผงควบคุมผู้ดูแล</h2><div class="tabs"><button id="tabProfiles" class="selected">จัดการโปรไฟล์</button><button id="tabInbox">กล่องข้อความ</button></div><section id="profileAdmin"><form id="profileForm" class="adminform"><input type="hidden" id="editId"><label>หมายเลข<input id="pNumber" required maxlength="12" placeholder="01"></label><label>ชื่อโปรไฟล์<input id="pName" required maxlength="60"></label><label>คำอธิบาย<input id="pBio" maxlength="400"></label><label>สถานะ<select id="pStatus"><option value="online">พร้อมคุย</option><option value="offline">ออฟไลน์</option></select></label><label>อัปโหลดรูป HD หลายรูป (JPEG/PNG/WebP ไม่เกิน 10 MB ต่อรูป)<input id="pImages" type="file" accept="image/jpeg,image/png,image/webp" multiple></label><button type="submit" class="gold" id="saveProfile">บันทึกโปรไฟล์</button><button type="button" id="resetProfile">ล้างฟอร์ม</button><p id="uploadInfo" class="small"></p></form><div id="adminProfiles"></div></section><section id="inboxAdmin" hidden><div id="inbox"></div></section></div></dialog>
+<footer>NOIR HOST © 2026 • โปรดใช้รูปภาพที่มีสิทธิ์เผยแพร่และได้รับความยินยอม</footer><div id="toast" role="status"></div><script type="module" src="app.js"></script></body></html>
 
-    <div class="container">
-        <h1>✨ ศาสตร์แห่งดวงดาว</h1>
-        <p style="color: #bbb; font-size: 15px;">กรอกข้อมูลเพื่อเปิดประตูสู่โชคชะตาของคุณ</p>
-        
-        <input type="text" id="user-name" placeholder="ชื่อเล่น" autocomplete="off">
-        <input type="date" id="user-dob" title="วันเดือนปีเกิด">
-        
-        <select id="category-select">
-            <option value="" disabled selected>-- เลือกเรื่องที่ต้องการดูดวง --</option>
-            <option value="การงาน">💼 ดูดวงการงาน</option>
-            <option value="การเงิน">💰 ดูดวงการเงิน</option>
-            <option value="ความรัก">❤️ ดูดวงความรัก / เนื้อคู่</option>
-            <option value="ทั่วไป">✨ ดูดวงภาพรวมทั่วไป</option>
-        </select>
-        
-        <button class="primary-btn" onclick="predict()">ทำนายดวงชะตา</button>
-        
-        <div class="loader" id="loader"></div>
-        
-        <div id="result-card">
-            <h3 style="margin-top: 0; color: var(--neon-color);" id="result-title"></h3>
-            <div id="result-text" style="font-size: 16px; line-height: 1.6;"></div>
-            <button class="share-btn" onclick="shareResult()">📤 แชร์คำทำนาย</button>
-        </div>
-    </div>
 
-    <script>
-        const fortunes = {
-            "การงาน": [
-                "โปรเจกต์หรือชิ้นงานที่คุณกำลังทำอยู่จะประสบความสำเร็จอย่างงดงาม เจ้านายหรือผู้ใหญ่เล็งเห็นความสามารถ",
-                "ช่วงนี้อาจมีเรื่องให้ต้องเหนื่อยกับการแก้ปัญหาเฉพาะหน้า แต่คุณจะผ่านมันไปได้ด้วยดี",
-                "มีเกณฑ์ได้รับการติดต่อเรื่องงานใหม่ๆ หรือการโยกย้ายตำแหน่งไปในทิศทางที่ดีขึ้น",
-                "ระวังปัญหาการสื่อสารกับเพื่อนร่วมงาน ควรใจเย็นและรับฟังเหตุผลของผู้อื่นให้มาก"
-            ],
-            "การเงิน": [
-                "การเงินโดดเด่นมาก มีโอกาสได้รับโชคลาภจากการเสี่ยงดวงหรือเงินก้อนโตแบบไม่คาดฝัน",
-                "ช่วงนี้สภาพคล่องอาจติดขัดเล็กน้อย ควรระมัดระวังการใช้จ่ายในสิ่งที่ไม่จำเป็น",
-                "การลงทุนในช่วงนี้จะได้รับผลตอบแทนที่ดี แต่ควรศึกษาข้อมูลให้รอบคอบก่อนตัดสินใจ",
-                "จะมีคนใกล้ตัวเข้ามาขอความช่วยเหลือเรื่องหยิบยืมเงิน ควรพิจารณาให้ดีก่อนช่วยเหลือ"
-            ],
-            "ความรัก": [
-                "คนโสดมีเกณฑ์พบคนที่ถูกใจจากการเดินทางหรือหน้าที่การงาน เป็นความสัมพันธ์ที่ค่อยๆ พัฒนา",
-                "คนมีคู่ ความรักสุกงอม มีความเข้าใจกันมากขึ้น บางคู่มีเกณฑ์ลั่นระฆังวิวาห์",
-                "ช่วงนี้อาจมีเรื่องให้พ่อแง่แม่งอนกันบ่อย ควรใช้เหตุผลมากกว่าอารมณ์ในการพูดคุย",
-                "เสน่ห์แรงเป็นพิเศษสำหรับคนโสด มีคนเข้ามาให้เลือกทำความรู้จักมากกว่าหนึ่งคน"
-            ],
-            "ทั่วไป": [
-                "วันนี้เป็นวันของคุณ ทำอะไรก็ราบรื่นและได้รับการสนับสนุนจากคนรอบข้าง",
-                "สุขภาพช่วงนี้ต้องระวังเป็นพิเศษ พักผ่อนให้เพียงพอและดื่มน้ำเยอะๆ",
-                "จังหวะชีวิตกำลังขาขึ้น อุปสรรคที่เคยมีจะค่อยๆ คลี่คลายไปในทางที่ดี",
-                "จะมีโชคจากคนแปลกหน้า หรือได้รับโอกาสดีๆ จากการเข้าไปอยู่ในสังคมใหม่ๆ"
-            ]
-        };
+======================== style.css ========================
 
-        function predict() {
-            const name = document.getElementById('user-name').value.trim();
-            const dob = document.getElementById('user-dob').value;
-            const category = document.getElementById('category-select').value;
-            
-            if(!name || !dob || !category) {
-                alert("กรุณากรอกข้อมูล ชื่อ, วันเกิด และเลือกเรื่องที่ต้องการดูดวงให้ครบถ้วนครับ");
-                return;
-            }
+:root{color-scheme:dark;--bg:#0b0b10;--panel:#1a1a23;--line:#35333b;--gold:#e5c38b;--text:#f5f1e9;--muted:#aaa6b0}*{box-sizing:border-box}body{margin:0;color:var(--text);font:16px/1.5 system-ui,'Segoe UI',Tahoma,sans-serif;background:radial-gradient(circle at 95% 0%,#30251f,transparent 34%),var(--bg)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid #514b45;border-radius:10px;background:#292730;color:var(--text);padding:10px 14px}button:hover{border-color:var(--gold)}button:disabled{opacity:.55;cursor:wait}.gold{background:var(--gold);color:#18130d;border-color:var(--gold);font-weight:700}input,select{width:100%;padding:11px;color:white;background:#111118;border:1px solid #494650;border-radius:9px}label{display:block;margin:10px 0;font-size:14px;color:#dfd6c8}label input,label select{margin-top:5px}nav{padding:19px max(24px,calc((100vw - 1160px)/2));display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:12px}.brand{font-size:24px;font-weight:900;letter-spacing:2px;white-space:nowrap}.brand span,.eyebrow,em{color:var(--gold)}.navright{display:flex;align-items:center;gap:10px;font-size:13px;flex-wrap:wrap}main{max-width:1160px;margin:auto;padding:20px}header{text-align:center;padding:58px 5px 34px}.eyebrow{font-size:11px;letter-spacing:4px}h1{font-size:clamp(30px,5vw,54px);line-height:1.15;margin:16px 0}em{font-style:normal}header p,.small{color:var(--muted)}.toolbar{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap}.toolbar input{max-width:460px}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}.person{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:var(--panel)}.cover{height:310px;background:linear-gradient(140deg,#30281f,#12131c);display:grid;place-items:center;font-size:64px;color:var(--gold)}.cover img{width:100%;height:100%;object-fit:cover}.person .info{padding:15px}.person h3{margin:0}.muted{color:var(--muted)}.person .info p{margin:7px 0 12px;font-size:14px}.person .info button{width:100%}.status{font-size:12px;color:#9be3b2}.offline{color:#b3acb7}dialog{border:1px solid #524b40;border-radius:17px;background:var(--panel);color:var(--text);padding:0;width:min(96vw,550px);max-height:92vh}dialog::backdrop{background:#000b}.panel{padding:25px;position:relative;max-height:90vh;overflow:auto}.wide{width:min(90vw,760px)}dialog:has(.wide){width:min(96vw,760px)}dialog:has(.adminpanel){width:min(96vw,920px)}dialog:has(.chatpanel){width:min(96vw,620px)}h2{margin:0 36px 7px 0}.close{position:absolute;right:13px;top:13px}.actions,.tabs{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap}.error{color:#ff9292}.gallery{display:flex;gap:10px;overflow-x:auto;margin:18px 0}.gallery img{height:240px;max-width:100%;border-radius:10px;object-fit:contain;background:#070709}.messages{height:320px;overflow-y:auto;background:#101015;border-radius:10px;padding:12px;margin-top:15px}.bubble{padding:10px 12px;max-width:87%;margin:9px 0;background:#30303c;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere}.mine{margin-left:auto;background:#4c3c28}.bubble small{display:block;color:#d2c8bb;font-size:11px}.sendbar{display:flex;gap:8px;margin-top:12px}.sendbar input{min-width:0}.adminform{border-bottom:1px solid var(--line);padding-bottom:15px}.adminrow,.inboxrow{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.inboxrow{cursor:pointer}.selected{border-color:var(--gold);color:var(--gold)}#toast{position:fixed;bottom:22px;right:22px;background:#282732;padding:12px;border-radius:9px;display:none;max-width:350px}footer{text-align:center;color:var(--muted);font-size:12px;padding:45px 10px}@media(max-width:560px){nav{padding:14px}.brand{font-size:19px}header{padding:32px 0}.cover{height:260px}.panel{padding:18px}.gallery img{height:180px}}
 
-            const loader = document.getElementById('loader');
-            const resultCard = document.getElementById('result-card');
-            
-            resultCard.style.display = 'none';
-            loader.style.display = 'block';
-            
-            setTimeout(() => {
-                loader.style.display = 'none';
-                
-                const categoryFortunes = fortunes[category];
-                let randomIndex = Math.floor(Math.random() * categoryFortunes.length);
-                let fortuneText = categoryFortunes[randomIndex];
-                
-                // --- ระบบข้อความพิเศษสำหรับ "แนท" ---
-                if (name.includes("แนท") && category === "ความรัก") {
-                    fortuneText = "<strong style='color: #ff758c; font-size: 18px;'>ดวงดาวได้จัดเรียงตัวเป็นพิเศษเพื่อคุณ...</strong><br><br>สำหรับคุณ <strong>'แนท'</strong> ในวัย 24 ปี จักรวาลอยากกระซิบบอกว่า คุณคือคนที่มีหัวใจที่งดงามและอบอุ่นที่สุด ความรักที่คุณกำลังจะเจอเนื้อคู่ที่อบอุ่นในเร็วๆนี้ ในดวงของคุณแนทจะได้เนื้อคู่เป็นผู้ชายที่ อายุ 30 ต้นๆ ที่มีนิสัยอบอุ่นคำพูดอ่อนโยนชายคนนี้เขามักจะเข้ามาในรูปแบบข้าราชการทหาร 💖✨";
-                }
-                // -------------------------------------
-                
-                document.getElementById('result-title').innerText = `ดวง${category} ของคุณ ${name}`;
-                document.getElementById('result-text').innerHTML = `
-                    <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-top: -10px; margin-bottom: 15px;">
-                        📅 วันที่เกิด: ${formatDate(dob)}
-                    </p>
-                    ${fortuneText}
-                `;
-                
-                resultCard.style.display = 'block';
-            }, 1800); 
-        }
 
-        function formatDate(dateString) {
-            const parts = dateString.split('-');
-            const year = parseInt(parts[0]) + 543;
-            return `${parts[2]}/${parts[1]}/${year}`;
-        }
+======================== app.js ========================
 
-        async function shareResult() {
-            const title = document.getElementById('result-title').innerText;
-            const textContent = document.getElementById('result-text').innerText;
-            
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'คำทำนายของฉัน',
-                        text: `${title}\n\n${textContent}\n\nมาเช็คดวงของคุณบ้างสิ! ✨`,
-                        url: window.location.href
-                    });
-                } catch (err) {
-                    console.log('Share canceled or failed', err);
-                }
-            } else {
-                navigator.clipboard.writeText(`${title}\n\n${textContent}\n\n${window.location.href}`);
-                alert("คัดลอกคำทำนายเรียบร้อยแล้ว! นำไปส่งในแชทได้เลย");
-            }
-        }
-    </script>
-</body>
-</html>
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+import { getFirestore, collection, doc, query, orderBy, onSnapshot, addDoc, updateDoc, deleteDoc, setDoc, getDoc, serverTimestamp, limit } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js';
+import { firebaseConfig } from './firebase-config.js';
+const $=id=>document.getElementById(id), app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),storage=getStorage(app);
+let user=null,isAdmin=false,profiles=[],unsubMessages=null,unsubRooms=null,unsubProfiles=null,activeRoom=null,activeProfile=null,rooms=[];
+const toast=msg=>{const t=$('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',4200)};
+const fail=e=>{console.error(e);toast(e?.message||'เกิดข้อผิดพลาด กรุณาลองใหม่')};
+const show=id=>$(id).showModal(),hide=id=>$(id).close();
+const el=(tag,cls,text)=>{let n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n};
+const appendButton=(parent,text,fn,cls='')=>{let b=el('button',cls,text);b.addEventListener('click',fn);parent.append(b);return b};
+const safePhotos=p=>Array.isArray(p.photos)?p.photos.filter(s=>typeof s==='string'&&s.startsWith('https://')):[];
+function renderProfiles(){let list=profiles.filter(p=>(p.number+' '+p.name).toLowerCase().includes($('search').value.toLowerCase()));$('cards').replaceChildren();if(!list.length){$('cards').append(el('p','muted','ยังไม่มีโปรไฟล์ที่ตรงกับการค้นหา'));return}list.forEach(p=>{let c=el('article','person'),cover=el('div','cover');const photos=safePhotos(p);if(photos.length){let im=el('img');im.src=photos[0];im.alt='รูปโปรไฟล์ '+p.name;im.loading='lazy';cover.append(im)}else cover.textContent='#'+p.number;let body=el('div','info');body.append(el('div',p.status==='online'?'status':'status offline',p.status==='online'?'● พร้อมคุย':'● ออฟไลน์'),el('h3','',`เบอร์ ${p.number} · ${p.name}`),el('p','muted',p.bio||'ดูรายละเอียดและเริ่มพูดคุย'));appendButton(body,'ดูรูปและพูดคุย',()=>openProfile(p),'gold');c.append(cover,body);$('cards').append(c)})}
+function openProfile(p){activeProfile=p;const root=$('profileDetails');root.replaceChildren(el('h2','',`เบอร์ ${p.number} · ${p.name}`),el('p','muted',p.bio||'โปรไฟล์สมาชิก'));let g=el('div','gallery');safePhotos(p).forEach(url=>{let img=el('img');img.src=url;img.alt='ภาพโปรไฟล์';g.append(img)});if(!g.children.length)g.append(el('p','muted','ยังไม่มีภาพในแกลเลอรี'));root.append(g);appendButton(root,'เริ่มแชตกับผู้ดูแล',()=>{hide('profileDialog');startChat(p)},'gold');show('profileDialog')}
+async function startChat(p){if(!user){show('authDialog');toast('กรุณาเข้าสู่ระบบก่อนเริ่มแชต');return}const id=user.uid+'_'+p.id;try{const roomRef=doc(db,'rooms',id);const snap=await getDoc(roomRef);if(!snap.exists())await setDoc(roomRef,{clientId:user.uid,profileId:p.id,profileName:p.name,profileNumber:p.number,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});openChat(id,`เบอร์ ${p.number} · ${p.name}`)}catch(e){fail(e)}}
+function openChat(roomId,title){if(unsubMessages)unsubMessages();activeRoom=roomId;$('chatTitle').textContent=title;$('messages').replaceChildren(el('p','muted','กำลังโหลดข้อความ...'));show('chatDialog');unsubMessages=onSnapshot(query(collection(db,'rooms',roomId,'messages'),orderBy('createdAt','asc'),limit(200)),snap=>{let box=$('messages');box.replaceChildren();snap.docs.forEach(d=>{let m=d.data(),mine=m.senderId===user?.uid,b=el('div','bubble'+(mine?' mine':''));b.append(el('div','',String(m.text||'')),el('small','',`${m.senderRole==='admin'?'ผู้ดูแล':'สมาชิก'} · ${m.createdAt?.toDate?.().toLocaleString('th-TH')||'กำลังส่ง'}`));box.append(b)});box.scrollTop=box.scrollHeight},fail)}
+$('messageForm').addEventListener('submit',async e=>{e.preventDefault();if(!activeRoom||!user)return;let input=$('messageInput'),text=input.value.trim();if(!text||text.length>2000)return;input.disabled=true;try{await addDoc(collection(db,'rooms',activeRoom,'messages'),{text,senderId:user.uid,senderRole:isAdmin?'admin':'client',createdAt:serverTimestamp()});await updateDoc(doc(db,'rooms',activeRoom),{updatedAt:serverTimestamp()});input.value=''}catch(e){fail(e)}finally{input.disabled=false;input.focus()}});
+$('closeChat').onclick=()=>hide('chatDialog');$('chatDialog').addEventListener('close',()=>{unsubMessages?.();unsubMessages=null;activeRoom=null});$('closeProfile').onclick=()=>hide('profileDialog');$('loginBtn').onclick=()=>show('authDialog');$('logoutBtn').onclick=()=>signOut(auth).catch(fail);$('search').oninput=renderProfiles;
+async function doAuth(signup){$('authError').textContent='';let email=$('email').value.trim(),password=$('password').value;try{if(signup)await createUserWithEmailAndPassword(auth,email,password);else await signInWithEmailAndPassword(auth,email,password);hide('authDialog');$('password').value=''}catch(e){$('authError').textContent=e.message}}$('signinBtn').onclick=()=>doAuth(false);$('signupBtn').onclick=()=>doAuth(true);
+onAuthStateChanged(auth,async u=>{unsubMessages?.();unsubMessages=null;activeRoom=null;if($('chatDialog').open)hide('chatDialog');user=u;isAdmin=false;$('identity').textContent=u?.email||'ผู้เยี่ยมชม';$('loginBtn').hidden=!!u;$('logoutBtn').hidden=!u;if(u){try{let role=await getDoc(doc(db,'admins',u.uid));isAdmin=role.exists()}catch(e){console.error(e)}}$('adminBtn').hidden=!isAdmin;unsubRooms?.();unsubRooms=null;if(isAdmin)subscribeRooms();if($('adminDialog').open&&!isAdmin)hide('adminDialog')});
+unsubProfiles=onSnapshot(query(collection(db,'profiles'),orderBy('number')),snap=>{profiles=snap.docs.map(d=>({id:d.id,...d.data()}));renderProfiles();if(isAdmin)renderAdminProfiles()},fail);
+$('adminBtn').onclick=()=>{renderAdminProfiles();renderInbox();show('adminDialog')};$('closeAdmin').onclick=()=>hide('adminDialog');$('tabProfiles').onclick=()=>{$('profileAdmin').hidden=false;$('inboxAdmin').hidden=true;$('tabProfiles').classList.add('selected');$('tabInbox').classList.remove('selected')};$('tabInbox').onclick=()=>{$('profileAdmin').hidden=true;$('inboxAdmin').hidden=false;$('tabInbox').classList.add('selected');$('tabProfiles').classList.remove('selected')};
+function renderAdminProfiles(){const root=$('adminProfiles');root.replaceChildren();profiles.forEach(p=>{let r=el('div','adminrow');r.append(el('span','',`#${p.number} · ${p.name} (${safePhotos(p).length} รูป)`));let btns=el('div','actions');appendButton(btns,'แก้ไข',()=>{ $('editId').value=p.id;$('pNumber').value=p.number;$('pName').value=p.name;$('pBio').value=p.bio||'';$('pStatus').value=p.status||'online';$('pImages').value='';$('uploadInfo').textContent='ภาพใหม่จะเพิ่มต่อท้ายภาพเดิม';$('profileForm').scrollIntoView({behavior:'smooth'})});appendButton(btns,'ลบ',async()=>{if(!confirm(`ลบโปรไฟล์ #${p.number}? รูปเดิมบน Storage และห้องแชตจะไม่ถูกลบอัตโนมัติ`))return;try{await deleteDoc(doc(db,'profiles',p.id))}catch(e){fail(e)}});r.append(btns);root.append(r)})}
+$('resetProfile').onclick=()=>{$('profileForm').reset();$('editId').value='';$('uploadInfo').textContent=''};
+$('profileForm').onsubmit=async e=>{e.preventDefault();if(!isAdmin)return;let b=$('saveProfile');b.disabled=true;try{let id=$('editId').value||doc(collection(db,'profiles')).id,existing=profiles.find(p=>p.id===id),images=[...$('pImages').files];if(images.length>12)throw Error('อัปโหลดได้ครั้งละไม่เกิน 12 รูป');let photos=safePhotos(existing||{});for(let i=0;i<images.length;i++){let f=images[i];if(!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>10*1024*1024)throw Error('รองรับ JPEG/PNG/WebP ขนาดไม่เกิน 10MB');$('uploadInfo').textContent=`กำลังอัปโหลด ${i+1}/${images.length}`;let path=`profiles/${id}/${crypto.randomUUID()}-${f.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;let obj=ref(storage,path);await uploadBytes(obj,f,{contentType:f.type});photos.push(await getDownloadURL(obj))}await setDoc(doc(db,'profiles',id),{number:$('pNumber').value.trim(),name:$('pName').value.trim(),bio:$('pBio').value.trim(),status:$('pStatus').value,photos,updatedAt:serverTimestamp()});$('resetProfile').click();toast('บันทึกโปรไฟล์สำเร็จ')}catch(e){fail(e)}finally{b.disabled=false}};
+function subscribeRooms(){unsubRooms=onSnapshot(query(collection(db,'rooms'),orderBy('updatedAt','desc'),limit(100)),snap=>{rooms=snap.docs.map(d=>({id:d.id,...d.data()}));renderInbox()},fail)}
+function renderInbox(){const root=$('inbox');root.replaceChildren();if(!rooms.length)root.append(el('p','muted','ยังไม่มีการสนทนา'));rooms.forEach(room=>{let r=el('div','inboxrow');r.append(el('span','',`#${room.profileNumber||'?'} · ${room.profileName||''} | สมาชิก ${room.clientId.slice(0,8)}…`));appendButton(r,'เปิดแชต',()=>{hide('adminDialog');openChat(room.id,`แชตเบอร์ ${room.profileNumber} · สมาชิก ${room.clientId.slice(0,8)}`)},'gold');root.append(r)})}
+
+
+======================== firebase-config.js ========================
+
+// วางค่าจาก Firebase Console > Project settings > Your apps > Web app
+export const firebaseConfig = {
+  apiKey: "PASTE_API_KEY",
+  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+
+
+======================== firestore.rules ========================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function admin() { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    match /admins/{uid} {
+      allow get: if signedIn() && request.auth.uid == uid;
+      allow list, create, update, delete: if false;
+    }
+    match /profiles/{pid} {
+      allow read: if true;
+      allow create, update: if admin()
+        && request.resource.data.keys().hasOnly(['number','name','bio','status','photos','updatedAt'])
+        && request.resource.data.number is string && request.resource.data.number.size() <= 12
+        && request.resource.data.name is string && request.resource.data.name.size() <= 60
+        && request.resource.data.bio is string && request.resource.data.bio.size() <= 400
+        && request.resource.data.status in ['online','offline']
+        && request.resource.data.photos is list && request.resource.data.photos.size() <= 60;
+      allow delete: if admin();
+    }
+    match /rooms/{roomId} {
+      function participant() { return signedIn() && resource.data.clientId == request.auth.uid; }
+      function validNewRoom() {
+        return signedIn()
+          && roomId == request.auth.uid + '_' + request.resource.data.profileId
+          && exists(/databases/$(database)/documents/profiles/$(request.resource.data.profileId))
+          && request.resource.data.keys().hasOnly(['clientId','profileId','profileName','profileNumber','createdAt','updatedAt'])
+          && request.resource.data.clientId == request.auth.uid
+          && request.resource.data.profileId is string
+          && request.resource.data.profileName is string
+          && request.resource.data.profileNumber is string
+          && request.resource.data.createdAt == request.time
+          && request.resource.data.updatedAt == request.time;
+      }
+      allow create: if validNewRoom();
+      allow get, list: if admin() || participant();
+      allow update: if (admin() || participant())
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['updatedAt'])
+          && request.resource.data.updatedAt == request.time;
+      allow delete: if admin();
+      match /messages/{messageId} {
+        function canRead() { return admin() || (signedIn() && get(/databases/$(database)/documents/rooms/$(roomId)).data.clientId == request.auth.uid); }
+        allow read: if canRead();
+        allow create: if signedIn() && canRead()
+          && request.resource.data.keys().hasOnly(['text','senderId','senderRole','createdAt'])
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 2000
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.senderRole == (admin() ? 'admin' : 'client')
+          && request.resource.data.createdAt == request.time;
+        allow update, delete: if false;
+      }
+    }
+  }
+}
+
+
+======================== storage.rules ========================
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function admin() {
+      return request.auth != null && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
+    }
+    match /profiles/{pid}/{fileName} {
+      allow read: if true;
+      allow create: if admin()
+        && request.resource.size <= 10 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+      allow update, delete: if admin();
+    }
+  }
+}
+
+
+======================== firebase.json ========================
+
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
+
